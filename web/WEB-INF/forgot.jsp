@@ -15,9 +15,9 @@
         <h1>Forgot Password</h1>
         <p>Please enter your email address to retrieve your password.</p>
         <form action="forgot" method="post">
-            Email Address: <input type="text" name="email"><br>
-            <input type="submit" value="Reset">
-            
+            Email Address: <input type="text" name="email" value="${email}"><br>
+            <input type="submit" value="Submit">
+            ${message}
         </form>
     </body>
 </html>
