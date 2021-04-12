@@ -17,7 +17,7 @@
         <form action="forgot" method="post">
             Email Address: <input type="text" name="email" value="${email}"><br>
             <input type="submit" value="Submit">
-            ${message}
         </form>
+        ${message}
     </body>
 </html>

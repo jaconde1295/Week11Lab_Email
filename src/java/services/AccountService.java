@@ -40,15 +40,14 @@ public class AccountService {
         User user = userDB.get(email);
 
         if (user != null) {
-
-            String to = user.getEmail();
+            String to = email;
             String subject = "Notes App Forgot Password";
             String template = path + "/emailtemplates/forgotpassword.html";
 
             HashMap<String, String> tags = new HashMap<>();
             tags.put("firstname", user.getFirstName());
             tags.put("lastname", user.getLastName());
-            tags.put("email", user.getEmail());
+            tags.put("email", email);
             tags.put("password", user.getPassword());
 
             try {
@@ -56,11 +55,10 @@ public class AccountService {
             } catch (Exception ex) {
                 Logger.getLogger(AccountService.class.getName()).log(Level.SEVERE, null, ex);
             }
+            
             return true;
-
         } else {
             return false;
         }
-
     }
 }
