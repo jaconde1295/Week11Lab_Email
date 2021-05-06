@@ -26,33 +26,21 @@ public class ForgotPasswordServlet extends HttpServlet {
         getServletContext().getRequestDispatcher("/WEB-INF/forgot.jsp").forward(request, response);
     }
 
-    
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-       
-          
-        AccountService as = new AccountService();
-        
-        String email = request.getParameter("email");
-        String path = "/WEB-INF/emailtemplates/forgotpassword.html";
-        boolean isTrue = as.forgotPassword(email, path);
-        
-        if(isTrue == true)
-        {
-            request.setAttribute("email", email);
-            request.setAttribute("message", "If the address you entered is valid, you will receive an email very soon.");
-            getServletContext().getRequestDispatcher("/WEB-INF/login.jsp").forward(request, response);
-        }
-        else
-        {
-            getServletContext().getRequestDispatcher("/WEB-INF/forgot.jsp").forward(request, response);
-        }
-        
-        HttpSession session = request.getSession();
-        session.setAttribute("email", email);
-    }
 
-   
+        String path = getServletContext().getRealPath("/WEB-INF");
+        String email = request.getParameter("email");
+
+        AccountService ac = new AccountService();
+
+        ac.forgotPassword(email, path);
+
+        String message = "If the address you entered is valid, you will receive an email very soon.";
+
+        request.setAttribute("message", message);
+        getServletContext().getRequestDispatcher("/WEB-INF/forgot.jsp").forward(request, response);
+    }
 
 }
